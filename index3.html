@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Lista de Alunos</title>
-  </head>
-  <body>
-    <h1>Alunos</h1>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Simples</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="wrap">
+        <h1>Cadastro de Aluno</h1>
 
-    <table border="1">
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Nota</th>
-      </tr>
-      
-      <tr>
-        <td>{{}}</td>
-        <td>{{ }}</td>
-        <td>{{ }}</td>
-      </tr>
-     
-    </table>
+        <form action="/adicionar" method="POST" class="form">
+            <input name="nome" type="text" placeholder="Nome" required>
+            <input name="idade" type="number" placeholder="Idade" required>
+            <input name="email" type="email" placeholder="E-mail" required>
+            <button type="submit">Cadastrar</button>
+        </form>
 
-    <h2>Adicionar Aluno</h2>
-    <form action="/adicionar" method="POST" > 
-      Nome: <input type="text" name="nome" required>
-      Nota:<input type="text" name="nota" required>
-       <button type="submit">Adicionar aluno</button>
-    </form>
+        <h2>Alunos Cadastrados ({{ alunos|length }})</h2>
     
-  </body>
+            <ul class="list">
+               {%for item in alunos%}
+                <li>{{item.nome}} {{item.idade}}{{item.telefone}}</li>
+              {%endfor%}
+            </ul>
+       
+            <p>Nenhum aluno cadastrado.</p>
+            
+       
+    </div>
+</body>
 </html>
