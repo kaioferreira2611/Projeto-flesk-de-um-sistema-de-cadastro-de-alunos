@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Alunos</title>
+</head>
+<body>
+  <h1>Lista de Alunos</h1>
+  <a href="/cadastro">Cadastrar novo aluno</a>
+  <hr>
+
+  {% if alunos %}
+    <ul>
+      {% for aluno in alunos %}
+        <li>
+          {{ aluno[1] }} - {{ aluno[2] }} anos
+          | <a href="/editar/{{ aluno[0] }}">Alterar</a>
+          | <a href="/deletar/{{ aluno[0] }}" onclick="return confirm('Deseja realmente deletar?')">Deletar</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nenhum aluno cadastrado ainda.</p>
+  {% endif %}
+</body>
+</html>
